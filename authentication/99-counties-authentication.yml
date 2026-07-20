@@ -1,0 +1,42 @@
+generated: '2026-07-17'
+method: searched
+source: https://99counties.com/.well-known/openid-configuration
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - authorizationCode
+  platform: Shopify Customer Account (OIDC)
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  type: openIdConnect
+  issuer: https://shopify.com/authentication/35071754378
+  authorization_endpoint: https://account.wallacefarms.com/authentication/oauth/authorize
+  token_endpoint: https://account.wallacefarms.com/authentication/oauth/token
+  end_session_endpoint: https://account.wallacefarms.com/authentication/logout
+  jwks_uri: https://account.wallacefarms.com/authentication/.well-known/jwks.json
+  response_types_supported:
+  - code
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  - 'urn:ietf:params:oauth:grant-type:jwt-bearer'
+  code_challenge_methods_supported:
+  - S256
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  id_token_signing_alg_values_supported:
+  - RS256
+  scopes_supported:
+  - openid
+  - email
+  - customer-account-api:full
+  - customer-account-mcp-api:full
+  sources:
+  - well-known/99-counties-openid-configuration.json
+notes: >-
+  Storefront browsing and UCP catalog reads are unauthenticated. Authenticated
+  customer-account access (orders, membership, and the customer-account MCP API)
+  uses Shopify Customer Account OAuth 2.0 / OIDC with PKCE (S256). Agent checkout
+  is gated on buyer approval rather than an agent-held credential.
