@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: searched
+source: https://99counties.com/.well-known/ucp
+standards:
+- id: ucp
+  name: Universal Commerce Protocol
+  conforms: true
+  version: '2026-04-08'
+  evidence: /.well-known/ucp advertises dev.ucp.shopping services + capabilities (cart, checkout, fulfillment, discount, order, catalog)
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: UCP shopping service exposed over MCP transport at /api/ucp/mcp
+- id: oauth2
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server (RFC 8414) advertises authorization_code + refresh_token grants
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: true
+  evidence: /.well-known/openid-configuration issuer + id_token RS256 + standard claims
+- id: rfc7636-pkce
+  name: PKCE
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: jsonrpc2
+  name: JSON-RPC 2.0
+  conforms: true
+  evidence: MCP endpoint returns JSON-RPC 2.0 request/response envelopes
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: MCP surface uses JSON-RPC error objects, not application/problem+json

@@ -1,0 +1,19 @@
+generated: '2026-07-17'
+method: searched
+source: https://99counties.com/.well-known/ucp
+versioning:
+  scheme: date-based (UCP protocol versions)
+  current: '2026-04-08'
+  supported:
+  - '2026-04-08'
+  - '2026-01-23'
+  docs: https://ucp.dev
+  note: >-
+    Protocol versioning is governed by the Universal Commerce Protocol (ucp.dev); the
+    storefront advertises which dated versions it supports via /.well-known/ucp. The
+    store itself publishes no independent API versioning or deprecation policy.
+platform: Shopify
+platform_status_page: https://www.shopifystatus.com
+deprecation:
+  policy_url: null
+  sunset_header: false

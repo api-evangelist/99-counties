@@ -1,0 +1,57 @@
+generated: '2026-07-17'
+method: searched
+source: https://99counties.com/llms.txt
+summary: >-
+  99 Counties is a Shopify storefront that exposes an agent-native commerce surface via
+  the Universal Commerce Protocol (UCP) over MCP, plus the standard Shopify read-only JSON
+  endpoints. These are the cross-cutting conventions an agent must follow.
+authentication:
+  browsing: none (unauthenticated read-only)
+  customer_account: Shopify Customer Account OAuth 2.0 / OIDC (PKCE S256)
+  ref: authentication/99-counties-authentication.yml
+agent_commerce:
+  protocol: UCP (Universal Commerce Protocol)
+  discovery: GET https://99counties.com/.well-known/ucp
+  mcp_endpoint: POST https://99counties.com/api/ucp/mcp
+  flow:
+  - discover (GET /.well-known/ucp)
+  - search (search_catalog)
+  - cart (create_cart)
+  - checkout (create_checkout)
+  - fulfill (update_checkout — shipping address + method)
+  - complete (complete_checkout — buyer must approve payment)
+  buyer_approval: >-
+    Checkout requires contemporaneous human approval. Agents must not complete payment
+    without explicit buyer consent. Where approval cannot be obtained at the moment of
+    payment, route via the Shop skill (https://shop.app/SKILL.md) through Shop Pay.
+  buyer_context:
+  - context.address_country
+  - context.currency
+read_only_browsing:
+  products_all: GET /collections/all
+  product_page: GET /products/{handle}
+  product_json: GET /products/{handle}.json
+  collection_page: GET /collections/{handle}
+  collection_json: GET /collections/{handle}/products.json
+  search: GET /search?q={query}&type=product
+  sitemap: GET /sitemap.xml
+rate_limiting:
+  documented: true
+  scope: per-IP on the UCP MCP endpoint
+  signal: HTTP 429
+  guidance: back off on 429 responses
+idempotency:
+  documented: false
+  note: No idempotency-key contract is published for the storefront/UCP surface.
+error_handling:
+  mcp_envelope: JSON-RPC 2.0 error object (e.g. code -32001, data.code invalid_profile_url)
+  ref: conformance/99-counties-conformance.yml
+payment_handlers:
+- com.google.pay (Google Pay)
+- dev.shopify.card (card)
+- dev.shopify.shop_pay (Shop Pay)
+cross_links:
+  authentication: authentication/99-counties-authentication.yml
+  scopes: scopes/99-counties-scopes.yml
+  well_known: well-known/99-counties-well-known.yml
+  mcp: mcp/99-counties-mcp.yml

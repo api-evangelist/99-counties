@@ -1,0 +1,38 @@
+generated: '2026-07-17'
+method: searched
+status: published
+source: https://99counties.com/llms.txt
+server:
+  name: 99-counties-ucp
+  transport: http
+  protocol: UCP (Universal Commerce Protocol)
+  url: https://99counties.com/api/ucp/mcp
+  content_type: application/json
+  spec: https://ucp.dev/2026-04-08/specification/overview/
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  discovery: https://99counties.com/.well-known/ucp
+  platform: Shopify
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  notes: >-
+    Real published MCP endpoint implementing the dev.ucp.shopping service. tools/list
+    requires a UCP agent profile URI (returns error invalid_profile_url without one).
+    Checkout requires contemporaneous human/buyer approval; endpoint is rate-limited per IP (429 backoff).
+# Tools documented in the store's own /llms.txt agent flow (dev.ucp.shopping.*).
+tools:
+- name: search_catalog
+  description: Find products matching the buyer's intent
+  capability: dev.ucp.shopping.catalog.search
+- name: create_cart
+  description: Add desired items to a cart
+  capability: dev.ucp.shopping.cart
+- name: create_checkout
+  description: Start the purchase flow
+  capability: dev.ucp.shopping.checkout
+- name: update_checkout
+  description: Set shipping address and method
+  capability: dev.ucp.shopping.fulfillment
+- name: complete_checkout
+  description: Finalize the purchase (buyer must approve payment)
+  capability: dev.ucp.shopping.order

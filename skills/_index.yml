@@ -1,0 +1,12 @@
+generated: '2026-07-17'
+method: generated
+skills:
+- file: 99-counties-ucp-shopping.md
+  name: Shop 99 Counties via UCP
+  api: mcp/99-counties-mcp.yml
+  operations:
+  - search_catalog
+  - create_cart
+  - create_checkout
+  - update_checkout
+  - complete_checkout

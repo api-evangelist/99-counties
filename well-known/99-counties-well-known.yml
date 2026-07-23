@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+host: https://99counties.com
+documents:
+- path: /.well-known/ucp
+  status: 200
+  file: 99-counties-ucp.json
+  note: Universal Commerce Protocol (UCP) merchant profile — supported versions, service endpoints, capabilities, payment handlers
+- path: /.well-known/openid-configuration
+  status: 200
+  file: 99-counties-openid-configuration.json
+  note: Shopify Customer Account OIDC discovery document
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: 99-counties-oauth-authorization-server.json
+  note: RFC 8414 OAuth 2.0 Authorization Server metadata (Shopify Customer Account)
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/mcp.json
+  status: 404

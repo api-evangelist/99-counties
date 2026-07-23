@@ -1,8 +1,14 @@
 aid: 99-counties
 name: 99 Counties
-description: '99 Counties is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: frontier-tech. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  99 Counties is a regenerative-agriculture meat company selling 100% grass-fed and
+  grass-finished beef and bison, pasture-raised pork, poultry, and lamb, plus wild-caught
+  seafood, sourced from small family farms across Iowa, Wisconsin, and Minnesota. Its
+  Shopify storefront exposes an agent-native commerce surface implementing the Universal
+  Commerce Protocol (UCP) over a published MCP endpoint, alongside Shopify Customer Account
+  OAuth 2.0 / OpenID Connect and standard read-only product and collection JSON. It was
+  surfaced through the API Evangelist VC-portfolio pipeline and enriched from its live
+  public agent-commerce surfaces.
 url: https://raw.githubusercontent.com/api-evangelist/99-counties/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +16,44 @@ x-backed-by:
 - gv
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.shopify.com/s/files/1/0350/7175/4378/files/Beef_Sub_Nav_f7d12905-6f5c-4d2a-a699-a144b387aabc.jpg?v=1665766002
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
-- Frontier Tech
-apis: []
+- E-Commerce
+- Agent Commerce
+- Regenerative Agriculture
+- Food and Beverage
+- Shopify
+- Model Context Protocol
+- Universal Commerce Protocol
+apis:
+- name: 99 Counties Commerce (UCP)
+  description: >-
+    Agent-driven commerce for the 99 Counties Shopify store via the Universal Commerce
+    Protocol over MCP — catalog search, cart, checkout, fulfillment, and buyer-approved
+    order completion.
+  humanURL: https://99counties.com/llms.txt
+  baseURL: https://99counties.com/api/ucp/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/99-counties-mcp.yml
+  - type: LLMsTxt
+    url: llms/99-counties-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -24,4 +61,41 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://99counties.com
+  url: https://99counties.com
+- type: Documentation
+  url: https://99counties.com/agents.md
+- type: LLMsTxt
+  url: llms/99-counties-llms.txt
+- type: MCPServer
+  url: mcp/99-counties-mcp.yml
+- type: WellKnown
+  url: well-known/99-counties-well-known.yml
+- type: Authentication
+  url: authentication/99-counties-authentication.yml
+- type: OAuthScopes
+  url: scopes/99-counties-scopes.yml
+- type: Conventions
+  url: conventions/99-counties-conventions.yml
+- type: Conformance
+  url: conformance/99-counties-conformance.yml
+- type: Lifecycle
+  url: lifecycle/99-counties-lifecycle.yml
+- type: AgentSkill
+  url: skills/99-counties-ucp-shopping.md
+- type: DomainSecurity
+  url: security/99-counties-domain-security.yml
+- type: Blog
+  url: https://99counties.com/blogs/news
+- type: SignUp
+  url: https://99counties.com/account/register
+- type: Login
+  url: https://99counties.com/account/login
+- type: TermsOfService
+  url: https://99counties.com/policies/terms-of-service
+- type: PrivacyPolicy
+  url: https://99counties.com/policies/privacy-policy
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

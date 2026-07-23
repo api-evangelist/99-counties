@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+source: https://99counties.com/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  source: well-known/99-counties-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://account.wallacefarms.com/authentication/oauth/authorize
+    tokenUrl: https://account.wallacefarms.com/authentication/oauth/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; returns an ID token identifying the customer
+  flows: [authorizationCode]
+- scope: email
+  description: Access to the customer's email address and verification status
+  flows: [authorizationCode]
+- scope: customer-account-api:full
+  description: Full access to the Shopify Customer Account API (orders, addresses, subscriptions, membership)
+  flows: [authorizationCode]
+- scope: customer-account-mcp-api:full
+  description: Full access to the Customer Account MCP API for agent-driven account operations
+  flows: [authorizationCode]
