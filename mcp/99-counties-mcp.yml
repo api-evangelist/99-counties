@@ -15,11 +15,9 @@ server:
   supported_versions:
   - '2026-04-08'
   - '2026-01-23'
-  notes: >-
-    Real published MCP endpoint implementing the dev.ucp.shopping service. tools/list
-    requires a UCP agent profile URI (returns error invalid_profile_url without one).
-    Checkout requires contemporaneous human/buyer approval; endpoint is rate-limited per IP (429 backoff).
-# Tools documented in the store's own /llms.txt agent flow (dev.ucp.shopping.*).
+  notes: Real published MCP endpoint implementing the dev.ucp.shopping service. tools/list requires a
+    UCP agent profile URI (returns error invalid_profile_url without one). Checkout requires contemporaneous
+    human/buyer approval; endpoint is rate-limited per IP (429 backoff).
 tools:
 - name: search_catalog
   description: Find products matching the buyer's intent
@@ -36,3 +34,11 @@ tools:
 - name: complete_checkout
   description: Finalize the purchase (buyer must approve payment)
   capability: dev.ucp.shopping.order
+deployment:
+  mode: remote
+  endpoint: https://99counties.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
