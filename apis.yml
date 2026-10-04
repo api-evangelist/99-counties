@@ -74,6 +74,9 @@ apis:
     url: mcp/99-counties-mcp.yml
   - type: LLMsTxt
     url: llms/99-counties-llms.txt
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
